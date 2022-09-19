@@ -6,6 +6,8 @@ import java.util.Map;
 
 public class HashMapLogic {
 
+	Map<Object, Object> map = new HashMap<>();
+
 	public void checkString(String inputString1) throws UserException {
 		if (inputString1.isEmpty() || inputString1 == null) {
 			throw new UserException("String should not be null or empty");
@@ -14,9 +16,7 @@ public class HashMapLogic {
 	}
 
 	public Map<Object, Object> createMap() {
-
-		Map<Object, Object> map = new HashMap<>();
-		return map;
+		return new HashMap<Object, Object>();
 	}
 
 	public int getSize(Map<Object, Object> map) {
@@ -24,67 +24,77 @@ public class HashMapLogic {
 		return map.size();
 	}
 
-	public Map<Object, Object> addString(Map<Object, Object> stringMap, String key, String value) {
-		stringMap.put(key, value);
-		return stringMap;
+	public Map<Object, Object> addString(String key, String value) throws UserException {
+		checkString(key);
+		checkString(value);
+		map.put(key, value);
+		return map;
 
 	}
 
-	public boolean checkKey(Map<Object, Object> map1, String key) {
-
-		return map1.containsKey(key);
+	public boolean checkKey(String key) throws UserException {
+		checkString(key);
+		return map.containsKey(key);
 	}
 
-	public boolean checkValue(Map<Object, Object> map1, String value) {
-		return map1.containsValue(value);
+	public boolean checkValue(String value) throws UserException {
+		checkString(value);
+		return map.containsValue(value);
 	}
 
-	public Object getValue(Map<Object, Object> map1, String key) {
-		if (checkKey(map1, key)) {
-			return map1.get(key);
+	public Object getValue(String key) throws UserException {
+		if (checkKey(key)) {
+			return map.get(key);
 
 		} else {
 			return "Key is not present in the map";
 		}
 	}
 
-	public Map<Object, Object> replaceValue(Map<Object, Object> map, String key, String value1) {
-		Object value = getValue(map, key);
+	public Map<Object, Object> replaceValue(String key, String value1) throws UserException {
+		checkString(key);
+		checkString(value1);
+		Object value = getValue(key);
 		map.replace(key, value, value1);
 		return map;
 	}
 
-	public Map<Object, Object> removeKey(Map<Object, Object> map, String key) {
-		checkKey(map, key);
+	public Map<Object, Object> removeKey(String key) throws UserException {
+		checkKey(key);
 		map.remove(key);
 		return map;
 
 	}
 
-	public Map<Object, Object> replace(Map<Object, Object> map, String key, String value1) {
-		checkKey(map, key);
+	public Map<Object, Object> replace(String key, String value1) throws UserException {
+		checkKey(key);
 		map.replace(key, value1);
 		return map;
 	}
 
-	public Map<Object, Object> newMap(Map<Object, Object> map) {
+	public Map<Object, Object> newMap() {
 		Map<Object, Object> map1 = createMap();
 		map1.putAll(map);
 		return map1;
 	}
 
-	public Map<Object, Object> remove(Map<Object, Object> map) {
+	public Map<Object, Object> remove() {
 		map.clear();
 		return map;
 	}
 
-	public Map<Object, Object> putIfAbsent(Map<Object, Object> map, String key, String value) {
+	public Map<Object, Object> putIfAbsent(String key, String value) throws UserException {
+		checkString(key);
+		checkString(value);
 		map.putIfAbsent(key, value);
 		return map;
 	}
 
-	public Map<Object, Object> getDefaultValue(Map<Object, Object> map, String key, String value) {
-		map.getOrDefault(key, value);
-		return map;
+	public Object getDefaultValue(String key, String value) throws UserException {
+		checkString(key);
+		checkString(value);
+
+		return map.getOrDefault(key, value);
+
 	}
 }

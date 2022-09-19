@@ -7,95 +7,101 @@ import java.util.Scanner;
 public class Runner {
 	String key1 = "";
 	String value1 = "";
+	static Scanner scan = new Scanner(System.in);
+	static HashMapLogic logic = new HashMapLogic();
 
-	public Map<Object, Object> addString(Scanner scan, HashMapLogic logic) throws UserException {
+	public Map<Object, Object> addString() throws UserException {
 
-		Map<Object, Object> map = logic.createMap();
 		System.out.println("Enter the number of pairs");
-		int pairs = scan.nextInt();
-		for (int i = 0; i < pairs; i++) {
-			scan.nextLine();
-			System.out.println("Enter the key");
-			String key = scan.nextLine();
-			System.out.println("Enter the value");
-			String value = scan.nextLine();
-			logic.checkString(key);
-			logic.checkString(value);
-			logic.addString(map, key, value);
+		try {
+
+			int pairs = scan.nextInt();
+			for (int i = 0; i < pairs; i++) {
+				scan.nextLine();
+				System.out.println("Enter the key");
+				String key = scan.nextLine();
+				System.out.println("Enter the value");
+				String value = scan.nextLine();
+				logic.checkString(key);
+				logic.checkString(value);
+				logic.addString(key, value);
+			}
+		} catch (UserException e) {
+			throw new UserException("Input mismatch found!");
 		}
-		return map;
+		return logic.map;
 	}
 
-	public void checkKey(Scanner scan, HashMapLogic logic) throws UserException {
+	public void checkKey() throws UserException {
 		scan.nextLine();
-		Map<Object, Object> map1 = addString(scan, logic);
+
 		System.out.println("Enter the key want to check");
 		String key = scan.nextLine();
 
-		System.out.println(logic.checkKey(map1, key));
+		System.out.println(logic.checkKey(key));
 
 	}
 
-	public void checkValue(Scanner scan, HashMapLogic logic) throws UserException {
+	public void checkValue() throws UserException {
 		scan.nextLine();
-		Map<Object, Object> map1 = addString(scan, logic);
+
 		System.out.println("Enter the value");
 		String value = scan.nextLine();
 
-		System.out.println(logic.checkValue(map1, value));
+		System.out.println(logic.checkValue(value));
 
 	}
 
-	public Map<Object, Object> getMapDetails(Scanner scan, HashMapLogic logic) throws UserException {
-		// scan.nextLine();
-		Map<Object, Object> map = addString(scan, logic);
+	public Map<Object, Object> getMapDetails() throws UserException {
+		scan.nextLine();
+
 		System.out.println("Enter the key");
 		key1 = scan.nextLine();
 
 		System.out.println("Enter the value1");
 		value1 = scan.nextLine();
-		return map;
+		return logic.map;
 	}
 
-	public void replaceValue(Scanner scan, HashMapLogic logic) throws UserException {
-
-		System.out.println(logic.replaceValue(getMapDetails(scan, logic), key1, value1));
+	public void replaceValue() throws UserException {
+		getMapDetails();
+		System.out.println(logic.replaceValue(key1, value1));
 
 	}
 
-	public void replace(Scanner scan, HashMapLogic logic) throws UserException {
+	public void replace() throws UserException {
 		// scan.nextLine();
-		System.out.println(logic.replace(getMapDetails(scan, logic), key1, value1));
+		getMapDetails();
+		System.out.println(logic.replace(key1, value1));
 
 	}
 
-	public void remove(Scanner scan, HashMapLogic logic) throws UserException {
-		System.out.println(logic.remove(addString(scan, logic)));
+	public void remove() throws UserException {
+		System.out.println(logic.remove());
 	}
 
-	public void putIfAbsent(Scanner scan, HashMapLogic logic) throws UserException {
-		Map<Object, Object> map1 = getMapDetails(scan, logic);
-		System.out.println(logic.putIfAbsent(map1, key1, value1));
-
-	}
-
-	public void getDefaultValue(Scanner scan, HashMapLogic logic) throws UserException {
-
-		Map<Object, Object> map1 = getMapDetails(scan, logic);
-		System.out.println(logic.getDefaultValue(map1, key1, value1));
+	public void putIfAbsent() throws UserException {
+		getMapDetails();
+		System.out.println(logic.putIfAbsent(key1, value1));
 
 	}
 
-	public void newMap(Scanner scan, HashMapLogic logic) throws UserException {
-		Map<Object, Object> map1 = addString(scan, logic);
-		System.out.println(logic.newMap(map1));
+	public void getDefaultValue() throws UserException {
+		getMapDetails();
+		System.out.println(logic.getDefaultValue(key1, value1));
+
+	}
+
+	public void newMap() throws UserException {
+
+		System.out.println(logic.newMap());
 	}
 
 	public static void main(String[] args) {
 		int option = 0;
-		HashMapLogic logic = new HashMapLogic();
+
 		Runner run = new Runner();
-		Scanner scan = new Scanner(System.in);
+
 		boolean value = true;
 		while (value) {
 			System.out.println("1.Create HashMap and get Size \n" + "2.String map \n" + "3.Replace value\n" + "4.Replace value if value matches \n" + "5.Check key is present \n" + "6.Check value is present \n" + "7.Clear map \n" + "8.Put if absent " + "9.get or default value \n" + "10.copy map to new map");
@@ -108,13 +114,12 @@ public class Runner {
 			}
 			switch (option) {
 			case 1:
-				Map<Object, Object> map = logic.createMap();
-				System.out.println(map);
-				System.out.println(logic.getSize(map));
+				Map<Object, Object> map1 = logic.map;
+				System.out.println(logic.getSize(map1));
 				break;
 			case 2:
 				try {
-					System.out.println(run.addString(scan, logic));
+					System.out.println(run.addString());
 				} catch (UserException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -123,7 +128,7 @@ public class Runner {
 
 			case 3:
 				try {
-					run.replace(scan, logic);
+					run.replace();
 				} catch (UserException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -131,7 +136,7 @@ public class Runner {
 				break;
 			case 4:
 				try {
-					run.replaceValue(scan, logic);
+					run.replaceValue();
 				} catch (UserException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -139,7 +144,7 @@ public class Runner {
 				break;
 			case 5:
 				try {
-					run.checkKey(scan, logic);
+					run.checkKey();
 				} catch (UserException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -147,7 +152,7 @@ public class Runner {
 				break;
 			case 6:
 				try {
-					run.checkValue(scan, logic);
+					run.checkValue();
 				} catch (UserException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -155,7 +160,7 @@ public class Runner {
 				break;
 			case 7:
 				try {
-					run.remove(scan, logic);
+					run.remove();
 				} catch (UserException e) {
 
 					e.printStackTrace();
@@ -163,7 +168,7 @@ public class Runner {
 				break;
 			case 8:
 				try {
-					run.putIfAbsent(scan, logic);
+					run.putIfAbsent();
 				} catch (UserException e) {
 
 					e.printStackTrace();
@@ -172,7 +177,7 @@ public class Runner {
 				break;
 			case 9:
 				try {
-					run.getDefaultValue(scan, logic);
+					run.getDefaultValue();
 				} catch (UserException e) {
 
 					e.printStackTrace();
@@ -180,7 +185,7 @@ public class Runner {
 				break;
 			case 10:
 				try {
-					run.newMap(scan, logic);
+					run.newMap();
 				} catch (UserException e) {
 
 					e.printStackTrace();
