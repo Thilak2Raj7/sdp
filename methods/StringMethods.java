@@ -15,8 +15,8 @@ public class StringMethods {
 
 	public int lengthOfString(String inputString1) throws UserDefinedException {
 		checkString(inputString1);
-		int length = inputString1.length();
-		return length;
+
+		return inputString1.length();
 
 	}
 
@@ -25,8 +25,7 @@ public class StringMethods {
 		if (value < length1) {
 			int characters = length1 - value;
 
-			String inputString11 = inputString1.substring(characters);
-			return inputString11;
+			return inputString1.substring(characters);
 		} else {
 			throw new UserDefinedException("The value is greater than length of inputString1ing");
 		}
@@ -39,97 +38,86 @@ public class StringMethods {
 		}
 		return inputString1.substring(0, numOfCharacters);
 
-		// return inputString11;
 	}
 
-	public void concatWithoutSpace(String input) throws UserDefinedException {
+	public String concatWithoutSpace(String input) throws UserDefinedException {
 		checkString(input);
-		System.out.println(input.replace(" ", ""));
+		return input.replace(" ", "");
 
 	}
 
-	public void startWithMethod(String input, String s2) throws UserDefinedException {
+	public boolean startWithMethod(String input, String input2) throws UserDefinedException {
 		checkString(input);
-		System.out.println(input.startsWith(s2));
+		return input.startsWith(input2);
 
 	}
 
-	public void endsWithMethod(String input, String s2) throws UserDefinedException {
+	public boolean endsWithMethod(String input, String input2) throws UserDefinedException {
 		checkString(input);
 
-		System.out.println(input.endsWith(s2));
+		return input.endsWith(input2);
 
 	}
 
-	public void ignoreCase(String input, String s2) throws UserDefinedException {
+	public boolean ignoreCase(String input, String input2) throws UserDefinedException {
 		checkString(input);
-		System.out.println(input.equalsIgnoreCase(s2));
+		return input.equalsIgnoreCase(input2);
 
 	}
 
-	public void equalsMethod(String input, String s2) {
-		if (input.equals(s2)) {
-			System.out.println("True");
-		} else {
-			System.out.println("False");
-		}
+	public boolean equalsMethod(String input, String input2) {
+		return input.contentEquals(input2);
 	}
 
 	public String reverse(String input) throws UserDefinedException {
 		int length = lengthOfString(input);
 
-		String s2 = "";
+		String input2 = "";
 		for (int i = length - 1; i >= 0; i--) {
-			s2 += input.charAt(i);
+			input2 += input.charAt(i);
 		}
-		return s2;
+		return input2;
 	}
 
 	public String upperCase(String input) throws UserDefinedException {
 		checkString(input);
-		String inputString1 = input.toUpperCase();
-		return inputString1;
+
+		return input.toUpperCase();
 
 	}
 
 	public String replace(String inputString1, int numberOfCharacters, String inputString11) throws UserDefinedException {
-		String inputString12 = firstThreeCharacters(inputString1, numberOfCharacters);
 
-		String inputString13 = inputString1.replace(inputString12, inputString11);
-		return inputString13;
+		return inputString1.replace(firstThreeCharacters(inputString1, numberOfCharacters), inputString11);
 
 	}
 
-	public void trim(String inputString1) throws UserDefinedException {
+	public String trim(String inputString1) throws UserDefinedException {
 		checkString(inputString1);
-		System.out.println(inputString1.trim());
+		return inputString1.trim();
 
 	}
 
-	public void split(String inputString1) throws UserDefinedException {
+	public String[] split(String inputString1) throws UserDefinedException {
 		checkString(inputString1);
-		String[] array = inputString1.split(" ");
-		for (String input : array) {
-			System.out.println(input);
-		}
+
+		return inputString1.split(" ");
 	}
 
-	public void convertStringToCharArray(String inputString1) {
+	public char[] convertStringToCharArray(String inputString1) {
 		int length = inputString1.length();
 		char[] arr = new char[length];
 		for (int i = 0; i < length; i++) {
 			arr[i] = inputString1.charAt(i);
 		}
-		for (int i = 0; i < length; i++) {
-			System.out.println(arr[i]);
-		}
+		return arr;
 	}
 
 	public String getStringValue() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the inputString");
-		String inputString1 = scan.nextLine();
-		return inputString1;
+
+		return scan.nextLine();
 	}
 
 	public char findPenUltimate(String inputString1, int position) throws UserDefinedException {
@@ -155,14 +143,14 @@ public class StringMethods {
 
 	public int findGreatestPosition(String inputString1, char ch) throws UserDefinedException {
 		checkString(inputString1);
-		int position = inputString1.lastIndexOf(ch);
-		return position;
+
+		return inputString1.lastIndexOf(ch);
 	}
 
 	public String lowerCase(String inputString1) throws UserDefinedException {
 		checkString(inputString1);
-		String inputString11 = inputString1.toLowerCase();
-		return inputString11;
+
+		return inputString1.toLowerCase();
 
 	}
 
@@ -196,8 +184,9 @@ public class StringMethods {
 			switch (num) {
 			case 1:
 				inputString1 = method.getStringValue();
+				System.out.println(inputString1);
 				try {
-					System.out.println(method.lengthOfString(inputString1));
+					System.out.println("Length of string " + method.lengthOfString(inputString1));
 				} catch (UserDefinedException e3) {
 					// TODO Auto-generated catch block
 					e3.printStackTrace();
@@ -206,7 +195,11 @@ public class StringMethods {
 
 			case 2:
 				inputString1 = method.getStringValue();
-				method.convertStringToCharArray(inputString1);
+				char[] arr = method.convertStringToCharArray(inputString1);
+
+				for (char ch : arr) {
+					System.out.println(ch);
+				}
 				break;
 
 			case 3:
@@ -214,7 +207,7 @@ public class StringMethods {
 				System.out.println("Enter the position of character");
 				int position = scan.nextInt();
 				try {
-					System.out.println(method.findPenUltimate(inputString1, position));
+					System.out.println("The pen ultimate  character: " + method.findPenUltimate(inputString1, position));
 				} catch (UserDefinedException e3) {
 					// TODO Auto-generated catch block
 					e3.printStackTrace();
@@ -225,7 +218,7 @@ public class StringMethods {
 				inputString1 = method.getStringValue();
 				System.out.println("Enter the character for number of occurences");
 				char ch = scan.next().charAt(0);
-				System.out.println(method.findOccurencesOfLetter(inputString1, ch));
+				System.out.println("The occurences of letter is " + method.findOccurencesOfLetter(inputString1, ch));
 				break;
 
 			case 5:
@@ -233,7 +226,7 @@ public class StringMethods {
 				System.out.println("Enter the character to find the greatest position");
 				char ch1 = scan.next().charAt(0);
 				try {
-					System.out.println(method.findGreatestPosition(inputString1, ch1));
+					System.out.println("The greatest position of character is " + method.findGreatestPosition(inputString1, ch1));
 				} catch (UserDefinedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -245,7 +238,7 @@ public class StringMethods {
 				System.out.println("Enter the value");
 				int value1 = scan.nextInt();
 				try {
-					System.out.println(method.lastFiveCharacters(inputString1, value1));
+					System.out.println("The last five characters of given string is " + method.lastFiveCharacters(inputString1, value1));
 				} catch (UserDefinedException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -256,7 +249,7 @@ public class StringMethods {
 				System.out.println("Enter the number of characters");
 				int numOfCharacters = scan.nextInt();
 				try {
-					System.out.println(method.firstThreeCharacters(inputString1, numOfCharacters));
+					System.out.println("The first three characters is " + method.firstThreeCharacters(inputString1, numOfCharacters));
 				} catch (UserDefinedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -268,7 +261,7 @@ public class StringMethods {
 				System.out.println("Enter the number of characters");
 				int numberOfCharacters = scan.nextInt();
 				try {
-					System.out.println(method.replace(inputString1, numberOfCharacters, inputString11));
+					System.out.println("After the characters replaced: " + method.replace(inputString1, numberOfCharacters, inputString11));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -279,7 +272,7 @@ public class StringMethods {
 				inputString1 = method.getStringValue();
 				inputString11 = method.getStringValue();
 				try {
-					method.startWithMethod(inputString1, inputString11);
+					System.out.println("Starts with : " + method.startWithMethod(inputString1, inputString11));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -290,7 +283,7 @@ public class StringMethods {
 				inputString1 = method.getStringValue();
 				inputString11 = method.getStringValue();
 				try {
-					method.endsWithMethod(inputString1, inputString11);
+					System.out.println("Ends with : " + method.endsWithMethod(inputString1, inputString11));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -300,7 +293,7 @@ public class StringMethods {
 			case 11:
 				inputString1 = method.getStringValue();
 				try {
-					System.out.println(method.upperCase(inputString1));
+					System.out.println("The upper case of string: " + method.upperCase(inputString1));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -309,7 +302,7 @@ public class StringMethods {
 			case 12:
 				inputString1 = method.getStringValue();
 				try {
-					System.out.println(method.lowerCase(inputString1));
+					System.out.println("The lower case of string: " + method.lowerCase(inputString1));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -317,13 +310,13 @@ public class StringMethods {
 			case 13:
 				inputString1 = method.getStringValue();
 				try {
-					System.out.println(method.reverse(inputString1));
+					System.out.println("The reverse of string: " + method.reverse(inputString1));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			case 14:
-				inputString1 = method.getStringValue();
+				System.out.println("String :" + method.getStringValue());
 				try {
 					method.checkString(inputString1);
 				} catch (UserDefinedException e1) {
@@ -336,10 +329,9 @@ public class StringMethods {
 
 			case 15:
 				inputString1 = method.getStringValue();
-				System.out.println("Enter the inputString1ing");
-				String inputString12 = scan.nextLine();
+
 				try {
-					method.concatWithoutSpace(inputString1);
+					System.out.println("After concatenation without space :" + method.concatWithoutSpace(inputString1));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -348,7 +340,10 @@ public class StringMethods {
 			case 16:
 				inputString1 = method.getStringValue();
 				try {
-					method.split(inputString1);
+					String[] inputArray = method.split(inputString1);
+					for (String input : inputArray) {
+						System.out.println(input);
+					}
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -363,7 +358,7 @@ public class StringMethods {
 				}
 				inputString1 = method.getStringValue();
 				try {
-					System.out.println(method.mergeWithHyphen(array, inputString1));
+					System.out.println("After merging : " + method.mergeWithHyphen(array, inputString1));
 				} catch (UserDefinedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -374,7 +369,7 @@ public class StringMethods {
 				inputString1 = method.getStringValue();
 				inputString11 = method.getStringValue();
 				try {
-					method.ignoreCase(inputString1, inputString11);
+					System.out.println("Ignore case : " + method.ignoreCase(inputString1, inputString11));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -383,13 +378,13 @@ public class StringMethods {
 			case 19:
 				inputString1 = method.getStringValue();
 				inputString11 = method.getStringValue();
-				method.equalsMethod(inputString1, inputString11);
+				System.out.println("Equals method :" + method.equalsMethod(inputString1, inputString11));
 				break;
 
 			case 20:
 				inputString1 = method.getStringValue();
 				try {
-					method.trim(inputString1);
+					System.out.println("After trim:" + method.trim(inputString1));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
