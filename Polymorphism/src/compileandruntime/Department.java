@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class Department extends College {
 
+	public void departmentName(String department) {
+		System.out.println("Department name  " + department);
+	}
+
 	public void print(String department) {
 		System.out.println("Department name is " + department);
 	}
@@ -15,18 +19,12 @@ public class Department extends College {
 		String name = scan.nextLine();
 		System.out.println("Enter the address of the college");
 		String address = scan.nextLine();
-		System.out.println("Enter the id");
+		System.out.println("Enter the  student id");
 		String id = scan.nextLine();
-
-		College cge = new College();
-		cge.print(name);
-
-		College dep = new Department();
-		dep.print(name);
+		System.out.println("Enter the department name");
+		String departmentName = scan.nextLine();
 		College stu = new Student();
 		stu.print(id);
-		cge.collegeDetails(name, address);
-		cge.collegeDetails(name, id, address);
 
 	}
 }
