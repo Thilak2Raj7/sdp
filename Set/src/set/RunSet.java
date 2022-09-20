@@ -71,7 +71,7 @@ public class RunSet {
 		RunSet run = new RunSet();
 
 		boolean value = true;
-		System.out.println("1.Add elements in set\n" + "2.Get size of set\n" + "3.Value is present in set\n" + "4.Remove value in set\n" + "5.Iterate element in set\n" + "6.Remove all elements in set\n" + "7.Retain all elements in set\n" + "8.Add all elements from collection\n" + "9.Clear ths set\n" + "10.Check Empty");
+		System.out.println("1.Add elements in set\n" + "2.Get size of set\n" + "3.Value is present in set\n" + "4.Remove value in set\n" + "5.Iterate element in set\n" + "6.Remove all elements in set using collection \n" + "7.Retain all elements in set using collection\n" + "8.Add all elements from collection\n" + "9.Clear ths set\n" + "10.Check Empty");
 		while (value) {
 
 			System.out.println("Enter the option to perform");
@@ -79,6 +79,8 @@ public class RunSet {
 				option = scan.nextInt();
 			} catch (Exception e) {
 				System.out.println("Enter valid option!");
+				scan.nextLine();
+				System.out.println("Input must be a integer");
 
 			}
 			switch (option) {
@@ -88,6 +90,7 @@ public class RunSet {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					System.out.println(e1.getMessage());
+					System.out.println("Input must be a integer");
 					e1.printStackTrace();
 				}
 				break;

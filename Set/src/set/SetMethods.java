@@ -23,9 +23,9 @@ public class SetMethods {
 	}
 
 	public Set<Object> addCollection() {
-		list.add(1);
-		list.add(10);
-		list.add(100);
+		/*
+		 * list.add(1); list.add(10); list.add(100);
+		 */
 		return list;
 	}
 
