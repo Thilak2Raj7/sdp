@@ -83,7 +83,7 @@ public class RunQueue {
 		RunQueue run = new RunQueue();
 
 		boolean value = true;
-		System.out.println("1.Add elements in queue\n" + "2.Get size of queue\n" + "3.Value is present in queue\n" + "4.Remove value in queue\n" + "5.Add element using offer\n" + "6.Get first element \n" + "7.Remove first element \n" + "8.Remove \n" + "9.Retrieve the first element in queue\n" + "10.Clear queue");
+		System.out.println("1.Add elements in queue\n" + "2.Get size of queue\n" + "3.Value is present in queue\n" + "4.Remove value in queue\n" + "5.Add element using offer\n" + "6.Get first element \n" + "7.Remove first element \n" + "8.Remove the head element in this queue\n" + "9.Retrieve the first element in queue\n" + "10.Clear queue");
 		while (value) {
 
 			System.out.println("Enter the option to perform");
@@ -103,7 +103,7 @@ public class RunQueue {
 					System.out.println(e1.getMessage());
 					System.out.println("Input must be an integer");
 					scan.nextLine();
-					e1.printStackTrace();
+
 				}
 				break;
 			case 2:
@@ -115,7 +115,7 @@ public class RunQueue {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-					e.printStackTrace();
+
 				}
 				break;
 			case 4:
@@ -124,7 +124,7 @@ public class RunQueue {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-					e.printStackTrace();
+
 				}
 				break;
 			case 5:
@@ -133,7 +133,7 @@ public class RunQueue {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-					e.printStackTrace();
+
 				}
 				break;
 			case 6:
@@ -142,7 +142,7 @@ public class RunQueue {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-					e.printStackTrace();
+
 				}
 				break;
 			case 7:
@@ -151,7 +151,7 @@ public class RunQueue {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-					e.printStackTrace();
+
 				}
 				break;
 			case 8:
@@ -169,7 +169,7 @@ public class RunQueue {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-					e.printStackTrace();
+
 				}
 				break;
 			case 10:
@@ -178,7 +178,7 @@ public class RunQueue {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-					e.printStackTrace();
+
 				}
 				break;
 			default:
