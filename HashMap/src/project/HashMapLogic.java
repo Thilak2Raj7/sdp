@@ -51,10 +51,10 @@ public class HashMapLogic {
 		}
 	}
 
-	public Map<Object, Object> replaceValue(String key, String value1) throws UserException {
+	public Map<Object, Object> replaceValue(String key, String value, String value1) throws UserException {
 		checkString(key);
 		checkString(value1);
-		Object value = getValue(key);
+		checkString(value);
 		map.replace(key, value, value1);
 		return map;
 	}

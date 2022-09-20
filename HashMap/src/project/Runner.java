@@ -5,74 +5,60 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Runner {
-	String key1 = "";
-	String value1 = "";
+
 	static Scanner scan = new Scanner(System.in);
 	static HashMapLogic logic = new HashMapLogic();
 
 	public Map<Object, Object> addString() throws UserException {
 
 		System.out.println("Enter the number of pairs");
-		try {
-
-			int pairs = scan.nextInt();
-			for (int i = 0; i < pairs; i++) {
-				scan.nextLine();
-				System.out.println("Enter the key");
-				String key = scan.nextLine();
-				System.out.println("Enter the value");
-				String value = scan.nextLine();
-				logic.checkString(key);
-				logic.checkString(value);
-				logic.addString(key, value);
-			}
-		} catch (UserException e) {
-			throw new UserException("Input mismatch found!");
+		int pairs = scan.nextInt();
+		for (int i = 0; i < pairs; i++) {
+			scan.nextLine();
+			logic.addString(getKey(), getValue());
 		}
 		return logic.map;
 	}
 
 	public void checkKey() throws UserException {
-		scan.nextLine();
 
-		System.out.println("Enter the key want to check");
-		String key = scan.nextLine();
-
-		System.out.println(logic.checkKey(key));
+		System.out.println(logic.checkKey(getKey()));
 
 	}
 
 	public void checkValue() throws UserException {
-		scan.nextLine();
 
-		System.out.println("Enter the value");
-		String value = scan.nextLine();
-
-		System.out.println(logic.checkValue(value));
+		System.out.println(logic.checkValue(getValue()));
 
 	}
 
-	public Map<Object, Object> getMapDetails() throws UserException {
-		scan.nextLine();
-
-		System.out.println("Enter the key");
-		key1 = scan.nextLine();
-
-		System.out.println("Enter the value1");
-		value1 = scan.nextLine();
-		return logic.map;
-	}
+	/*
+	 * public Map<Object, Object> getMapDetails() throws UserException { scan.nextLine();
+	 * 
+	 * System.out.println("Enter the key"); key1 = scan.nextLine();
+	 * 
+	 * System.out.println("Enter the value1"); value1 = scan.nextLine(); return logic.map; }
+	 */
 
 	public void replaceValue() throws UserException {
-		getMapDetails();
-		System.out.println(logic.replaceValue(key1, value1));
+		System.out.println(logic.replaceValue(getKey(), getValue(), getValue()));
 
+	}
+
+	public String getKey() {
+		scan.nextLine();
+		System.out.println("Enter the key");
+		return scan.nextLine();
+	}
+
+	public String getValue() {
+		scan.nextLine();
+		System.out.println("Enter the value of a key");
+		return scan.nextLine();
 	}
 
 	public void replace() throws UserException {
-		// scan.nextLine();
-		getMapDetails();
-		System.out.println(logic.replace(key1, value1));
+		System.out.println(logic.replace(getKey(), getValue()));
 
 	}
 
@@ -81,14 +67,14 @@ public class Runner {
 	}
 
 	public void putIfAbsent() throws UserException {
-		getMapDetails();
-		System.out.println(logic.putIfAbsent(key1, value1));
+
+		System.out.println(logic.putIfAbsent(getKey(), getValue()));
 
 	}
 
 	public void getDefaultValue() throws UserException {
-		getMapDetails();
-		System.out.println(logic.getDefaultValue(key1, value1));
+
+		System.out.println(logic.getDefaultValue(getKey(), getValue()));
 
 	}
 
